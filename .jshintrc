@@ -1,0 +1,25 @@
+{
+  "node": true,
+  "esnext": true,
+  "bitwise": false,
+  "curly": false,
+  "eqeqeq": true,
+  "eqnull": true,
+  "immed": true,
+  "latedef": false,
+  "newcap": true,
+  "noarg": true,
+  "undef": true,
+  "strict": true,
+  "quotmark": "single",
+  "scripturl": true,
+  "globals": {
+    "require": false,
+    "describe": false,
+    "it": false,
+    "before": false,
+    "beforeEach": false,
+    "after": false,
+    "afterEach": false
+  }
+}
