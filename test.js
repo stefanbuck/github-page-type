@@ -3,6 +3,20 @@
 var assert = require('assert');
 var ghType = require('./index.js');
 
+var testBuilder = function(value, list) {
+  describe(value, function() {
+    list.forEach(function(url) {
+      it(url.replace('!', 'not '), function() {
+        var method = 'equal';
+        if (url.charAt(0) === '!') {
+          method = 'notEqual';
+        }
+        assert[method](ghType(url), value);
+      });
+    });
+  });
+};
+
 describe('githubPageType', function() {
 
   it('throws an error if url is not defined', function () {
@@ -29,44 +43,66 @@ describe('githubPageType', function() {
     assert.equal(ghType('https://github.com', ['HOME']), true);
   });
 
-  describe('githubPageType', function() {
+  describe('type', function() {
 
-    it('static type', function () {
-      assert.equal(ghType('https://github.com'), 'HOME');
-      assert.equal(ghType('https://github.com/blog'), 'BLOG');
-      assert.equal(ghType('https://github.com/explore'), 'EXPLORE');
-      assert.equal(ghType('https://github.com/notifications'), 'NOTIFICATIONS');
-      assert.equal(ghType('https://github.com/showcases'), 'SHOWCASES');
-      assert.equal(ghType('https://github.com/stars'), 'STARS');
-      assert.equal(ghType('https://github.com/trending'), 'TRENDING');
-      assert.equal(ghType('https://github.com/watching'), 'WATCHING');
-      assert.equal(ghType('https://github.com/search'), 'SEARCH');
-      assert.equal(ghType('https://github.com/settings/admin'), 'SETTINGS_ADMIN');
-      assert.equal(ghType('https://github.com/settings/applications'), 'SETTINGS_APPLICATIONS');
-      assert.equal(ghType('https://github.com/settings/billing'), 'SETTINGS_BILLING');
-      assert.equal(ghType('https://github.com/settings/emails'), 'SETTINGS_EMAILS');
-      assert.equal(ghType('https://github.com/settings/notifications'), 'SETTINGS_NOTIFICATIONS');
-      assert.equal(ghType('https://github.com/settings/organizations'), 'SETTINGS_ORGANIZATIONS');
-      assert.equal(ghType('https://github.com/settings/profile'), 'SETTINGS_PROFILE');
-      assert.equal(ghType('https://github.com/settings/repositories'), 'SETTINGS_REPOSITORIES');
-      assert.equal(ghType('https://github.com/settings/security'), 'SETTINGS_SECURITY');
-      assert.equal(ghType('https://github.com/settings/ssh'), 'SETTINGS_SSH');
-    });
+    testBuilder('USER_ORGANIZATION_PROFILE', [
+      'https://github.com/user',
+      'https://github.com/user/',
+      'https://github.com/us-er',
+      '!https://github.com/us/er',
+    ]);
 
-    it('user or organization', function() {
-      assert.equal(ghType('https://github.com/user'), 'USER_ORGANIZATION_PROFILE');
-      assert.equal(ghType('https://github.com/user/'), 'USER_ORGANIZATION_PROFILE');
-      assert.equal(ghType('https://github.com/us-er'), 'USER_ORGANIZATION_PROFILE');
-      assert.notEqual(ghType('https://github.com/us/er'), 'USER_ORGANIZATION_PROFILE');
-    });
+    testBuilder('REPOSITORY', [
+      'https://github.com/user/repo',
+      'https://github.com/user/repo/',
+      'https://github.com/us-er/repo',
+      'https://github.com/user/re-po',
+      'https://github.com/us-er/re-po',
+      '!https://github.com/user',
+      '!https://github.com/user/repo/foo',
+    ]);
 
-    it('repository', function() {
-      assert.equal(ghType('https://github.com/user/repo'), 'REPOSITORY');
-      assert.equal(ghType('https://github.com/user/repo/'), 'REPOSITORY');
-      assert.equal(ghType('https://github.com/user/re-po'), 'REPOSITORY');
-      assert.equal(ghType('https://github.com/us-er/repo'), 'REPOSITORY');
-      assert.equal(ghType('https://github.com/us-er/re-po'), 'REPOSITORY');
-      assert.notEqual(ghType('https://github.com/user/repo/foo'), 'REPOSITORY');
-    });
+    testBuilder('REPOSITORY_SEARCH', [
+      'https://github.com/user/repo/search',
+      'https://github.com/user/repo/search/',
+      'https://github.com/user/repo/search?utf8=✓&q=foo',
+      '!https://github.com/search',
+      '!https://github.com/user/search',
+      '!https://github.com/user/repo/foo/search',
+    ]);
+
+    testBuilder('HOME', [
+      'http://github.com',
+      'https://github.com',
+      'https://github.com/',
+      '!https://github.com/foo',
+      '!https://foo.github.com',
+    ]);
+
+    testBuilder('BLOG', [
+      'http://github.com/blog',
+      'https://github.com/blog/',
+      'https://github.com/blog/foo',
+      '!https://github.com/foo',
+    ]);
+
+    testBuilder('EXPLORE', ['http://github.com/explore']);
+    testBuilder('NOTIFICATIONS', ['http://github.com/notifications']);
+    testBuilder('SHOWCASES', ['http://github.com/showcases']);
+    testBuilder('STARS', ['http://github.com/stars']);
+    testBuilder('TRENDING', ['http://github.com/trending']);
+    testBuilder('WATCHING', ['http://github.com/watching']);
+    testBuilder('SEARCH', ['http://github.com/search']);
+    testBuilder('SETTINGS_ADMIN', ['http://github.com/settings/admin']);
+    testBuilder('SETTINGS_APPLICATIONS', ['http://github.com/settings/applications']);
+    testBuilder('SETTINGS_BILLING', ['https://github.com/settings/billing']);
+    testBuilder('SETTINGS_EMAILS', ['https://github.com/settings/emails']);
+    testBuilder('SETTINGS_NOTIFICATIONS', ['https://github.com/settings/notifications']);
+    testBuilder('SETTINGS_ORGANIZATIONS', ['https://github.com/settings/organizations']);
+    testBuilder('SETTINGS_PROFILE', ['https://github.com/settings/profile']);
+    testBuilder('SETTINGS_REPOSITORIES', ['https://github.com/settings/repositories']);
+    testBuilder('SETTINGS_SECURITY', ['https://github.com/settings/security']);
+    testBuilder('SETTINGS_SSH', ['https://github.com/settings/ssh']);
+
   });
 });

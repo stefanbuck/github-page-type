@@ -9,6 +9,9 @@ suite('dynamic', function() {
   bench('user/repo', function () {
     ghType('https://github.com/user/repo');
   });
+  bench('user/repo/search', function () {
+    ghType('https://github.com/user/repo/search');
+  });
 });
 
 suite('static', function() {

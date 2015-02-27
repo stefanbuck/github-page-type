@@ -9,7 +9,6 @@ Type.push({
 });
 
 var staticTypes = [
-  'blog',
   'explore',
   'notifications',
   'showcases',
@@ -39,6 +38,12 @@ for (var i = 0; i < staticTypes.length; i++) {
 }
 
 Type.push({
+  name: 'BLOG',
+  test: /^https?:\/\/github\.com\/blog/g,
+  sample: 'https://github.com/blog'
+});
+
+Type.push({
   name: 'USER_ORGANIZATION_PROFILE',
   test: /^https?:\/\/github\.com\/[^/]+\/?$/g,
   sample: 'https://github.com/user'
@@ -48,6 +53,12 @@ Type.push({
   name: 'REPOSITORY',
   test: /^https?:\/\/github\.com\/[^/]+\/[^/]+\/?$/g,
   sample: 'https://github.com/user/repo'
+});
+
+Type.push({
+  name: 'REPOSITORY_SEARCH',
+  test: /^https?:\/\/github\.com\/[^/]+\/[^/]+\/search\/?/g,
+  sample: 'https://github.com/user/repo/search'
 });
 
 // TODO add support for:
