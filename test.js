@@ -93,6 +93,9 @@ describe('githubPageType', function() {
     isEqualHelper(['http://github.com/trending'], 'TRENDING');
     isEqualHelper(['http://github.com/watching'], 'WATCHING');
     isEqualHelper(['http://github.com/search'], 'SEARCH');
+    isEqualHelper(['http://github.com/about'], 'ABOUT');
+    isEqualHelper(['http://github.com/contact'], 'CONTACT');
+    isEqualHelper(['http://github.com/features'], 'FEATURES');
     isEqualHelper(['http://github.com/settings/admin'], 'SETTINGS_ADMIN');
     isEqualHelper(['http://github.com/settings/applications'], 'SETTINGS_APPLICATIONS');
     isEqualHelper(['https://github.com/settings/billing'], 'SETTINGS_BILLING');
