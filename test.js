@@ -3,7 +3,7 @@
 var assert = require('assert');
 var ghType = require('./index.js');
 
-var testBuilder = function(value, list) {
+var isEqualHelper = function(list, value) {
   describe(value, function() {
     list.forEach(function(url) {
       it(url.replace('!', 'not '), function() {
@@ -45,14 +45,14 @@ describe('githubPageType', function() {
 
   describe('type', function() {
 
-    testBuilder('USER_ORGANIZATION_PROFILE', [
+    isEqualHelper([
       'https://github.com/user',
       'https://github.com/user/',
       'https://github.com/us-er',
       '!https://github.com/us/er',
-    ]);
+    ], 'USER_ORGANIZATION_PROFILE');
 
-    testBuilder('REPOSITORY', [
+    isEqualHelper([
       'https://github.com/user/repo',
       'https://github.com/user/repo/',
       'https://github.com/us-er/repo',
@@ -60,49 +60,49 @@ describe('githubPageType', function() {
       'https://github.com/us-er/re-po',
       '!https://github.com/user',
       '!https://github.com/user/repo/foo',
-    ]);
+    ], 'REPOSITORY');
 
-    testBuilder('REPOSITORY_SEARCH', [
+    isEqualHelper([
       'https://github.com/user/repo/search',
       'https://github.com/user/repo/search/',
       'https://github.com/user/repo/search?utf8=✓&q=foo',
       '!https://github.com/search',
       '!https://github.com/user/search',
       '!https://github.com/user/repo/foo/search',
-    ]);
+    ], 'REPOSITORY_SEARCH');
 
-    testBuilder('HOME', [
+    isEqualHelper([
       'http://github.com',
       'https://github.com',
       'https://github.com/',
       '!https://github.com/foo',
       '!https://foo.github.com',
-    ]);
+    ], 'HOME');
 
-    testBuilder('BLOG', [
+    isEqualHelper([
       'http://github.com/blog',
       'https://github.com/blog/',
       'https://github.com/blog/foo',
       '!https://github.com/foo',
-    ]);
+    ], 'BLOG');
 
-    testBuilder('EXPLORE', ['http://github.com/explore']);
-    testBuilder('NOTIFICATIONS', ['http://github.com/notifications']);
-    testBuilder('SHOWCASES', ['http://github.com/showcases']);
-    testBuilder('STARS', ['http://github.com/stars']);
-    testBuilder('TRENDING', ['http://github.com/trending']);
-    testBuilder('WATCHING', ['http://github.com/watching']);
-    testBuilder('SEARCH', ['http://github.com/search']);
-    testBuilder('SETTINGS_ADMIN', ['http://github.com/settings/admin']);
-    testBuilder('SETTINGS_APPLICATIONS', ['http://github.com/settings/applications']);
-    testBuilder('SETTINGS_BILLING', ['https://github.com/settings/billing']);
-    testBuilder('SETTINGS_EMAILS', ['https://github.com/settings/emails']);
-    testBuilder('SETTINGS_NOTIFICATIONS', ['https://github.com/settings/notifications']);
-    testBuilder('SETTINGS_ORGANIZATIONS', ['https://github.com/settings/organizations']);
-    testBuilder('SETTINGS_PROFILE', ['https://github.com/settings/profile']);
-    testBuilder('SETTINGS_REPOSITORIES', ['https://github.com/settings/repositories']);
-    testBuilder('SETTINGS_SECURITY', ['https://github.com/settings/security']);
-    testBuilder('SETTINGS_SSH', ['https://github.com/settings/ssh']);
+    isEqualHelper(['http://github.com/explore'], 'EXPLORE');
+    isEqualHelper(['http://github.com/notifications'], 'NOTIFICATIONS');
+    isEqualHelper(['http://github.com/showcases'], 'SHOWCASES');
+    isEqualHelper(['http://github.com/stars'], 'STARS');
+    isEqualHelper(['http://github.com/trending'], 'TRENDING');
+    isEqualHelper(['http://github.com/watching'], 'WATCHING');
+    isEqualHelper(['http://github.com/search'], 'SEARCH');
+    isEqualHelper(['http://github.com/settings/admin'], 'SETTINGS_ADMIN');
+    isEqualHelper(['http://github.com/settings/applications'], 'SETTINGS_APPLICATIONS');
+    isEqualHelper(['https://github.com/settings/billing'], 'SETTINGS_BILLING');
+    isEqualHelper(['https://github.com/settings/emails'], 'SETTINGS_EMAILS');
+    isEqualHelper(['https://github.com/settings/notifications'], 'SETTINGS_NOTIFICATIONS');
+    isEqualHelper(['https://github.com/settings/organizations'], 'SETTINGS_ORGANIZATIONS');
+    isEqualHelper(['https://github.com/settings/profile'], 'SETTINGS_PROFILE');
+    isEqualHelper(['https://github.com/settings/repositories'], 'SETTINGS_REPOSITORIES');
+    isEqualHelper(['https://github.com/settings/security'], 'SETTINGS_SECURITY');
+    isEqualHelper(['https://github.com/settings/ssh'], 'SETTINGS_SSH');
 
   });
 });
