@@ -1,12 +1,21 @@
 'use strict';
 
+var urlParse = require('url').parse;
 var Type = require('./type.js');
 
-function getTypeFromURL (url, list) {
+function executeTest(test, urlObj) {
+  if (test.pathname) {
+    return urlObj.pathname === test.pathname;
+  } else if (typeof test === 'function') {
+    return test(urlObj);
+  }
+}
+
+function getTypeFromURL (urlObj, list) {
   for (var i = 0; i < list.length; i++) {
     var rule = list[i];
 
-    if(!!url.match(rule.test)) {
+    if (executeTest(rule.test, urlObj)) {
       return rule.name;
     }
   }
@@ -16,6 +25,21 @@ function getTypeFromURL (url, list) {
 var GitHubPageType = function(url, isFromType) {
   if (!url) {
     throw new Error('Missing argument url');
+  }
+
+  var urlObj = urlParse(url);
+  if (!urlObj.hostname.match(/github\.com$/)) {
+    throw new Error('hostname is not github.com');
+  }
+
+  if (urlObj.pathname.length > 1) {
+    var paths = urlObj.pathname.slice(1);
+    if (paths.charAt(paths.length - 1) === '/') {
+      paths = paths.slice(0, -1);
+    }
+    urlObj.pathlist = paths.split('/');
+  } else {
+    urlObj.pathlist = [];
   }
 
   var result,
@@ -31,7 +55,7 @@ var GitHubPageType = function(url, isFromType) {
     });
   }
 
-  result = getTypeFromURL(url, lookup);
+  result = getTypeFromURL(urlObj, lookup);
 
   if (isFromType) {
     return !!result;

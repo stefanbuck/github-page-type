@@ -10,6 +10,7 @@ var isEqualHelper = function(list, value) {
         var method = 'equal';
         if (url.charAt(0) === '!') {
           method = 'notEqual';
+          url = url.slice(1);
         }
         assert[method](ghType(url), value);
       });
@@ -20,7 +21,15 @@ var isEqualHelper = function(list, value) {
 describe('githubPageType', function() {
 
   it('throws an error if url is not defined', function () {
-    assert.throws(ghType.bind(), 'Missing argument url');
+    assert.throws(ghType.bind(), /Missing argument url/);
+  });
+
+  it('throws an error if hostname is not github.com', function () {
+    assert.throws(ghType.bind(null, 'http://google.com'), /hostname is not github.com/);
+  });
+
+  it('takes a github url', function () {
+    assert.doesNotThrow(ghType.bind(null, 'http://github.com'));
   });
 
   it('takes an url', function () {
@@ -70,6 +79,19 @@ describe('githubPageType', function() {
       '!https://github.com/user/search',
       '!https://github.com/user/repo/foo/search',
     ], 'REPOSITORY_SEARCH');
+
+    // isEqualHelper([
+    //   'https://github.com/user/repo/blob/master/.file',
+    //   'https://github.com/user/repo/blob/master/file',
+    //   'https://github.com/user/repo/blob/master/file.js',
+    //   'https://github.com/user/repo/blob/master/folder/.file',
+    //   'https://github.com/user/repo/blob/master/folder/file',
+    //   'https://github.com/user/repo/blob/master/folder/file.js',
+    //   'https://github.com/user/repo/blob/dev/folder/file.js',
+    //   '!https://github.com/user/repo/blob/master',
+    //   '!https://github.com/user/repo/blob/master/',
+    //   '!https://github.com/user/repo/blob/dev',
+    // ], 'REPOSITORY_BLOB');
 
     isEqualHelper([
       'http://github.com',

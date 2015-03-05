@@ -4,7 +4,9 @@ var Type = [];
 
 Type.push({
   name: 'HOME',
-  test: /^https?:\/\/github\.com\/?$/g,
+  test: function(obj) {
+    return obj.hostname === 'github.com' && obj.pathlist.length === 0;
+  },
   sample: 'https://github.com'
 });
 
@@ -35,32 +37,43 @@ for (var i = 0; i < staticTypes.length; i++) {
   var val = staticTypes[i];
   Type.push({
     name: val.toUpperCase().replace(/\//g, '_'),
-    test: new RegExp('^https?:\/\/github\.com\/'+val+'\/?$', 'g'),
+    test: {
+      pathname: '/' + val
+    },
     sample: 'https://github.com/' + val
   });
 }
 
 Type.push({
   name: 'BLOG',
-  test: /^https?:\/\/github\.com\/blog/g,
+  test: function(obj) {
+    return obj.pathname.match(/^\/blog/);
+  },
   sample: 'https://github.com/blog'
 });
 
 Type.push({
   name: 'USER_ORGANIZATION_PROFILE',
-  test: /^https?:\/\/github\.com\/[^/]+\/?$/g,
+  test: function(obj) {
+    return obj.pathlist.length === 1;
+  },
   sample: 'https://github.com/user'
 });
 
 Type.push({
   name: 'REPOSITORY',
-  test: /^https?:\/\/github\.com\/[^/]+\/[^/]+\/?$/g,
+  test: function(obj) {
+    return obj.pathlist.length === 2;
+  },
   sample: 'https://github.com/user/repo'
 });
 
 Type.push({
   name: 'REPOSITORY_SEARCH',
-  test: /^https?:\/\/github\.com\/[^/]+\/[^/]+\/search\/?/g,
+  // test: /^https?:\/\/github\.com\/[^/]+\/[^/]+\/search\/?/g,
+  test: function(obj) {
+    return obj.pathlist.length === 3 && obj.pathlist[2] === 'search';
+  },
   sample: 'https://github.com/user/repo/search'
 });
 
