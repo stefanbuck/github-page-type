@@ -69,8 +69,23 @@ Type.push({
 });
 
 Type.push({
+  name: 'REPOSITORY_BLOB',
+  test: function(obj) {
+    return obj.pathlist.length > 4 && obj.pathlist[2] === 'blob';
+  },
+  sample: 'https://github.com/user/repo/blob/master/file'
+});
+
+Type.push({
+  name: 'REPOSITORY_TREE',
+  test: function(obj) {
+    return obj.pathlist.length > 3 && obj.pathlist[2] === 'tree';
+  },
+  sample: 'https://github.com/user/repo/tree/master/folder'
+});
+
+Type.push({
   name: 'REPOSITORY_SEARCH',
-  // test: /^https?:\/\/github\.com\/[^/]+\/[^/]+\/search\/?/g,
   test: function(obj) {
     return obj.pathlist.length === 3 && obj.pathlist[2] === 'search';
   },
@@ -79,12 +94,9 @@ Type.push({
 
 // TODO add support for:
 
-// https://github.com/user/repo/blob/master/src/index.js
 // https://github.com/user/repo/branches
 // https://github.com/user/repo/commits/4a30c6606465e294d1ae1c9ca394ba03368928f7
 // https://github.com/user/repo/commits/master
-// https://github.com/user/repo/search
-// https://github.com/user/repo/tree/master/src
 //
 // https://github.com/orgs/foo/audit-log
 // https://github.com/orgs/foo/people

@@ -80,18 +80,27 @@ describe('githubPageType', function() {
       '!https://github.com/user/repo/foo/search',
     ], 'REPOSITORY_SEARCH');
 
-    // isEqualHelper([
-    //   'https://github.com/user/repo/blob/master/.file',
-    //   'https://github.com/user/repo/blob/master/file',
-    //   'https://github.com/user/repo/blob/master/file.js',
-    //   'https://github.com/user/repo/blob/master/folder/.file',
-    //   'https://github.com/user/repo/blob/master/folder/file',
-    //   'https://github.com/user/repo/blob/master/folder/file.js',
-    //   'https://github.com/user/repo/blob/dev/folder/file.js',
-    //   '!https://github.com/user/repo/blob/master',
-    //   '!https://github.com/user/repo/blob/master/',
-    //   '!https://github.com/user/repo/blob/dev',
-    // ], 'REPOSITORY_BLOB');
+    isEqualHelper([
+      'https://github.com/user/repo/blob/master/.file',
+      'https://github.com/user/repo/blob/master/file',
+      'https://github.com/user/repo/blob/master/file.js',
+      'https://github.com/user/repo/blob/master/folder/.file',
+      'https://github.com/user/repo/blob/master/folder/file',
+      'https://github.com/user/repo/blob/master/folder/file.js',
+      'https://github.com/user/repo/blob/dev/folder/file.js',
+      'https://github.com/user/repo/blob/7ce2bf0dfc3e57cf3a2d2cda85224da23a8318b8/file.js',
+      '!https://github.com/user/repo/blob/master',
+      '!https://github.com/user/repo/blob/dev',
+    ], 'REPOSITORY_BLOB');
+
+    isEqualHelper([
+      'https://github.com/user/repo/tree/master/folder',
+      'https://github.com/user/repo/tree/master',
+      'https://github.com/user/repo/tree/dev/folder',
+      'https://github.com/user/repo/tree/dev',
+      'https://github.com/user/repo/tree/7ce2bf0dfc3e57cf3a2d2cda85224da23a8318b8/folder',
+      '!https://github.com/user/repo/tree',
+    ], 'REPOSITORY_TREE');
 
     isEqualHelper([
       'http://github.com',
