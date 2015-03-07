@@ -108,6 +108,16 @@ describe('githubPageType', function() {
     ], 'REPOSITORY_COMMIT');
 
     isEqualHelper([
+      'https://github.com/user/repo/issues',
+      'https://github.com/user/repo/issues?q=is%3Aissue+is%3Aclosed',
+    ], 'REPOSITORY_ISSUES');
+
+    isEqualHelper([
+      'https://github.com/user/repo/issues/1',
+      'https://github.com/user/repo/issues/1#ref-commit-3c8959c',
+    ], 'REPOSITORY_ISSUE');
+
+    isEqualHelper([
       'http://github.com',
       'https://github.com',
       'https://github.com/',

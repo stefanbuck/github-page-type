@@ -100,6 +100,22 @@ Type.push({
   sample: 'https://github.com/user/repo/search'
 });
 
+Type.push({
+  name: 'REPOSITORY_ISSUES',
+  test: function(obj) {
+    return obj.pathlist.length === 3 && obj.pathlist[2] === 'issues';
+  },
+  sample: 'https://github.com/user/repo/issues'
+});
+
+Type.push({
+  name: 'REPOSITORY_ISSUE',
+  test: function(obj) {
+    return obj.pathlist.length === 4 && obj.pathlist[2] === 'issues';
+  },
+  sample: 'https://github.com/user/repo/issues/123'
+});
+
 // TODO add support for:
 
 // https://github.com/user/repo/branches
@@ -125,8 +141,6 @@ Type.push({
 // https://github.com/user/repo/graphs/contributors
 // https://github.com/user/repo/graphs/punch-card
 // https://github.com/user/repo/graphs/traffic
-// https://github.com/user/repo/issues
-// https://github.com/user/repo/issues/123
 // https://github.com/user/repo/network
 // https://github.com/user/repo/network/members
 // https://github.com/user/repo/pull/123
