@@ -116,6 +116,38 @@ Type.push({
   sample: 'https://github.com/user/repo/issues/123'
 });
 
+Type.push({
+  name: 'REPOSITORY_PULLS',
+  test: function(obj) {
+    return obj.pathlist.length === 3 && obj.pathlist[2] === 'pulls';
+  },
+  sample: 'https://github.com/user/repo/pulls'
+});
+
+Type.push({
+  name: 'REPOSITORY_PULL_CONVERSATION',
+  test: function(obj) {
+    return obj.pathlist.length === 4 && obj.pathlist[2] === 'pull';
+  },
+  sample: 'https://github.com/user/repo/pull/123'
+});
+
+Type.push({
+  name: 'REPOSITORY_PULL_COMMITS',
+  test: function(obj) {
+    return obj.pathlist.length === 5 && obj.pathlist[2] === 'pull' && obj.pathlist[4] === 'commits';
+  },
+  sample: 'https://github.com/user/repo/pull/123/commits'
+});
+
+Type.push({
+  name: 'REPOSITORY_PULL_FILES',
+  test: function(obj) {
+    return obj.pathlist.length === 5 && obj.pathlist[2] === 'pull' && obj.pathlist[4] === 'files';
+  },
+  sample: 'https://github.com/user/repo/pull/123/files'
+});
+
 // TODO add support for:
 
 // https://github.com/user/repo/branches
@@ -143,8 +175,6 @@ Type.push({
 // https://github.com/user/repo/graphs/traffic
 // https://github.com/user/repo/network
 // https://github.com/user/repo/network/members
-// https://github.com/user/repo/pull/123
-// https://github.com/user/repo/pulls
 // https://github.com/user/repo/releases
 // https://github.com/user/repo/releases/tag/v0.18.9
 // https://github.com/user/repo/settings

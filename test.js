@@ -118,6 +118,31 @@ describe('githubPageType', function() {
     ], 'REPOSITORY_ISSUE');
 
     isEqualHelper([
+      'https://github.com/user/repo/pulls',
+      'https://github.com/user/repo/pulls?q=is%3Apr+is%3Aclosed',
+    ], 'REPOSITORY_PULLS');
+
+    isEqualHelper([
+      'https://github.com/user/repo/pull/123',
+      'https://github.com/user/repo/pull/123#issue-56141270',
+      '!https://github.com/user/repo/pull/123/commits',
+      '!https://github.com/user/repo/pull/123/files',
+    ], 'REPOSITORY_PULL_CONVERSATION');
+
+    isEqualHelper([
+      'https://github.com/user/repo/pull/123/commits',
+      '!https://github.com/user/repo/pull/123',
+      '!https://github.com/user/repo/pull/123/files',
+    ], 'REPOSITORY_PULL_COMMITS');
+
+    isEqualHelper([
+      'https://github.com/user/repo/pull/123/files',
+      'https://github.com/user/repo/pull/123/files?diff=split',
+      '!https://github.com/user/repo/pull/123',
+      '!https://github.com/user/repo/pull/123/commits',
+    ], 'REPOSITORY_PULL_FILES');
+
+    isEqualHelper([
       'http://github.com',
       'https://github.com',
       'https://github.com/',
