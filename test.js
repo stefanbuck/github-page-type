@@ -103,6 +103,11 @@ describe('githubPageType', function() {
     ], 'REPOSITORY_TREE');
 
     isEqualHelper([
+      'https://github.com/user/repo/commits/4a30c6606465e294d1ae1c9ca394ba03368928f7',
+      '!https://github.com/user/repo/commits',
+    ], 'REPOSITORY_COMMIT');
+
+    isEqualHelper([
       'http://github.com',
       'https://github.com',
       'https://github.com/',

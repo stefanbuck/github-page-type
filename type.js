@@ -85,6 +85,14 @@ Type.push({
 });
 
 Type.push({
+  name: 'REPOSITORY_COMMIT',
+  test: function(obj) {
+    return obj.pathlist.length === 4 && obj.pathlist[2] === 'commits';
+  },
+  sample: 'https://github.com/user/repo/commits/4a30c6606465e294d1ae1c9ca394ba03368928f7'
+});
+
+Type.push({
   name: 'REPOSITORY_SEARCH',
   test: function(obj) {
     return obj.pathlist.length === 3 && obj.pathlist[2] === 'search';
@@ -95,7 +103,6 @@ Type.push({
 // TODO add support for:
 
 // https://github.com/user/repo/branches
-// https://github.com/user/repo/commits/4a30c6606465e294d1ae1c9ca394ba03368928f7
 // https://github.com/user/repo/commits/master
 //
 // https://github.com/orgs/foo/audit-log
