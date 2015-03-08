@@ -105,7 +105,14 @@ describe('githubPageType', function() {
     isEqualHelper([
       'https://github.com/user/repo/commits/4a30c6606465e294d1ae1c9ca394ba03368928f7',
       '!https://github.com/user/repo/commits',
+      '!https://github.com/user/repo/commits/master'
     ], 'REPOSITORY_COMMIT');
+
+    isEqualHelper([
+      'https://github.com/user/repo/commits',
+      'https://github.com/user/repo/commits/master',
+      '!https://github.com/user/repo/commits/4a30c6606465e294d1ae1c9ca394ba03368928f7'
+    ], 'REPOSITORY_COMMITS');
 
     isEqualHelper([
       'https://github.com/user/repo/issues',
@@ -141,6 +148,16 @@ describe('githubPageType', function() {
       '!https://github.com/user/repo/pull/123',
       '!https://github.com/user/repo/pull/123/commits',
     ], 'REPOSITORY_PULL_FILES');
+
+    isEqualHelper([
+      'https://github.com/user/repo/compare/master...dev',
+      '!https://github.com/user/repo/compare',
+    ], 'REPOSITORY_COMPARE');
+
+    isEqualHelper([
+      'https://github.com/user/repo/compare',
+      '!https://github.com/user/repo/compare/master...dev'
+    ], 'REPOSITORY_COMPARE_OVERVIEW');
 
     isEqualHelper([
       'http://github.com',

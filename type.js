@@ -87,9 +87,17 @@ Type.push({
 Type.push({
   name: 'REPOSITORY_COMMIT',
   test: function(obj) {
-    return obj.pathlist.length === 4 && obj.pathlist[2] === 'commits';
+    return obj.pathlist.length === 4 && obj.pathlist[2] === 'commits' && /\b[0-9a-f]{7,40}\b/.test(obj.pathlist[3]);
   },
   sample: 'https://github.com/user/repo/commits/4a30c6606465e294d1ae1c9ca394ba03368928f7'
+});
+
+Type.push({
+  name: 'REPOSITORY_COMMITS',
+  test: function(obj) {
+    return obj.pathlist.length < 5 && obj.pathlist[2] === 'commits' && !/\b[0-9a-f]{7,40}\b/.test(obj.pathlist[3]);
+  },
+  sample: 'https://github.com/user/repo/commits/master'
 });
 
 Type.push({
@@ -148,10 +156,25 @@ Type.push({
   sample: 'https://github.com/user/repo/pull/123/files'
 });
 
+Type.push({
+  name: 'REPOSITORY_COMPARE',
+  test: function(obj) {
+    return obj.pathlist.length === 4 && obj.pathlist[2] === 'compare';
+  },
+  sample: 'https://github.com/user/repo/compare/master...dev'
+});
+
+Type.push({
+  name: 'REPOSITORY_COMPARE_OVERVIEW',
+  test: function(obj) {
+    return obj.pathlist.length === 3 && obj.pathlist[2] === 'compare';
+  },
+  sample: 'https://github.com/user/repo/compare'
+});
+
 // TODO add support for:
 
 // https://github.com/user/repo/branches
-// https://github.com/user/repo/commits/master
 //
 // https://github.com/orgs/foo/audit-log
 // https://github.com/orgs/foo/people
@@ -167,7 +190,6 @@ Type.push({
 // https://github.com/user/repo/branches/all
 // https://github.com/user/repo/branches/stale
 // https://github.com/user/repo/branches/yours
-// https://github.com/user/repo/compare/foo:master...master
 // https://github.com/user/repo/graphs/code-frequency
 // https://github.com/user/repo/graphs/commit-activity
 // https://github.com/user/repo/graphs/contributors
