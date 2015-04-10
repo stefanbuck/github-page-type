@@ -16,19 +16,19 @@ $ npm install --save github-page-type
 ## Usage
 
 ```js
-githubPageType('https://github.com/github-linker'));
+githubPageType('https://github.com/github-linker');
 // => USER_ORGANIZATION_PROFILE
 
-githubPageType('https://github.com/blog'));
+githubPageType('https://github.com/blog');
 // => BLOG
 
-githubPageType('https://github.com/github-linker/core'));
+githubPageType('https://github.com/github-linker/core');
 // => REPOSITORY
 
-githubPageType('https://github.com/blog', githubPageType.BLOG));
+githubPageType('https://github.com/blog', githubPageType.BLOG);
 // => true
 
-githubPageType('https://github.com/blog', [githubPageType.USER_ORGANIZATION_PROFILE]));
+githubPageType('https://github.com/blog', [githubPageType.USER_ORGANIZATION_PROFILE]);
 // => false
 ```
 
