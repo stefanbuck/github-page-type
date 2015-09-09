@@ -3,10 +3,10 @@
 var assert = require('assert');
 var ghType = require('./index.js');
 
-var isEqualHelper = function(list, value) {
-  describe(value, function() {
-    list.forEach(function(url) {
-      it(url.replace('!', 'not '), function() {
+var isEqualHelper = function (list, value) {
+  describe(value, function () {
+    list.forEach(function (url) {
+      it(url.replace('!', 'not '), function () {
         var method = 'equal';
         if (url.charAt(0) === '!') {
           method = 'notEqual';
@@ -18,7 +18,7 @@ var isEqualHelper = function(list, value) {
   });
 };
 
-describe('githubPageType', function() {
+describe('githubPageType', function () {
 
   it('throws an error if url is not defined', function () {
     assert.throws(ghType.bind(), /Missing argument url/);
@@ -52,7 +52,7 @@ describe('githubPageType', function() {
     assert.equal(ghType('https://github.com', ['HOME']), true);
   });
 
-  describe('type', function() {
+  describe('type', function () {
 
     isEqualHelper([
       'https://github.com/user',

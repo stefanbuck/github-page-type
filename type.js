@@ -4,7 +4,7 @@ var Type = [];
 
 Type.push({
   name: 'HOME',
-  test: function(obj) {
+  test: function (obj) {
     return obj.hostname === 'github.com' && obj.pathlist.length === 0;
   },
   sample: 'https://github.com'
@@ -46,7 +46,7 @@ for (var i = 0; i < staticTypes.length; i++) {
 
 Type.push({
   name: 'BLOG',
-  test: function(obj) {
+  test: function (obj) {
     return obj.pathname.match(/^\/blog/);
   },
   sample: 'https://github.com/blog'
@@ -54,7 +54,7 @@ Type.push({
 
 Type.push({
   name: 'USER_ORGANIZATION_PROFILE',
-  test: function(obj) {
+  test: function (obj) {
     return obj.pathlist.length === 1;
   },
   sample: 'https://github.com/user'
@@ -62,7 +62,7 @@ Type.push({
 
 Type.push({
   name: 'REPOSITORY',
-  test: function(obj) {
+  test: function (obj) {
     return obj.pathlist.length === 2;
   },
   sample: 'https://github.com/user/repo'
@@ -70,7 +70,7 @@ Type.push({
 
 Type.push({
   name: 'REPOSITORY_BLOB',
-  test: function(obj) {
+  test: function (obj) {
     return obj.pathlist.length > 4 && obj.pathlist[2] === 'blob';
   },
   sample: 'https://github.com/user/repo/blob/master/file'
@@ -78,7 +78,7 @@ Type.push({
 
 Type.push({
   name: 'REPOSITORY_TREE',
-  test: function(obj) {
+  test: function (obj) {
     return obj.pathlist.length > 3 && obj.pathlist[2] === 'tree';
   },
   sample: 'https://github.com/user/repo/tree/master/folder'
@@ -86,7 +86,7 @@ Type.push({
 
 Type.push({
   name: 'REPOSITORY_COMMIT',
-  test: function(obj) {
+  test: function (obj) {
     return obj.pathlist.length === 4 && obj.pathlist[2] === 'commits' && /\b[0-9a-f]{7,40}\b/.test(obj.pathlist[3]);
   },
   sample: 'https://github.com/user/repo/commits/4a30c6606465e294d1ae1c9ca394ba03368928f7'
@@ -94,7 +94,7 @@ Type.push({
 
 Type.push({
   name: 'REPOSITORY_COMMITS',
-  test: function(obj) {
+  test: function (obj) {
     return obj.pathlist.length < 5 && obj.pathlist[2] === 'commits' && !/\b[0-9a-f]{7,40}\b/.test(obj.pathlist[3]);
   },
   sample: 'https://github.com/user/repo/commits/master'
@@ -102,7 +102,7 @@ Type.push({
 
 Type.push({
   name: 'REPOSITORY_SEARCH',
-  test: function(obj) {
+  test: function (obj) {
     return obj.pathlist.length === 3 && obj.pathlist[2] === 'search';
   },
   sample: 'https://github.com/user/repo/search'
@@ -110,7 +110,7 @@ Type.push({
 
 Type.push({
   name: 'REPOSITORY_ISSUES',
-  test: function(obj) {
+  test: function (obj) {
     return obj.pathlist.length === 3 && obj.pathlist[2] === 'issues';
   },
   sample: 'https://github.com/user/repo/issues'
@@ -118,7 +118,7 @@ Type.push({
 
 Type.push({
   name: 'REPOSITORY_ISSUE',
-  test: function(obj) {
+  test: function (obj) {
     return obj.pathlist.length === 4 && obj.pathlist[2] === 'issues';
   },
   sample: 'https://github.com/user/repo/issues/123'
@@ -126,7 +126,7 @@ Type.push({
 
 Type.push({
   name: 'REPOSITORY_PULLS',
-  test: function(obj) {
+  test: function (obj) {
     return obj.pathlist.length === 3 && obj.pathlist[2] === 'pulls';
   },
   sample: 'https://github.com/user/repo/pulls'
@@ -134,7 +134,7 @@ Type.push({
 
 Type.push({
   name: 'REPOSITORY_PULL_CONVERSATION',
-  test: function(obj) {
+  test: function (obj) {
     return obj.pathlist.length === 4 && obj.pathlist[2] === 'pull';
   },
   sample: 'https://github.com/user/repo/pull/123'
@@ -142,7 +142,7 @@ Type.push({
 
 Type.push({
   name: 'REPOSITORY_PULL_COMMITS',
-  test: function(obj) {
+  test: function (obj) {
     return obj.pathlist.length === 5 && obj.pathlist[2] === 'pull' && obj.pathlist[4] === 'commits';
   },
   sample: 'https://github.com/user/repo/pull/123/commits'
@@ -150,7 +150,7 @@ Type.push({
 
 Type.push({
   name: 'REPOSITORY_PULL_FILES',
-  test: function(obj) {
+  test: function (obj) {
     return obj.pathlist.length === 5 && obj.pathlist[2] === 'pull' && obj.pathlist[4] === 'files';
   },
   sample: 'https://github.com/user/repo/pull/123/files'
@@ -158,7 +158,7 @@ Type.push({
 
 Type.push({
   name: 'REPOSITORY_COMPARE',
-  test: function(obj) {
+  test: function (obj) {
     return obj.pathlist.length === 4 && obj.pathlist[2] === 'compare';
   },
   sample: 'https://github.com/user/repo/compare/master...dev'
@@ -166,7 +166,7 @@ Type.push({
 
 Type.push({
   name: 'REPOSITORY_COMPARE_OVERVIEW',
-  test: function(obj) {
+  test: function (obj) {
     return obj.pathlist.length === 3 && obj.pathlist[2] === 'compare';
   },
   sample: 'https://github.com/user/repo/compare'

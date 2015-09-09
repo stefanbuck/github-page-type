@@ -22,7 +22,7 @@ function getTypeFromURL (urlObj, list) {
   return null;
 }
 
-var GitHubPageType = function(url, isFromType) {
+var GitHubPageType = function (url, isFromType) {
   if (!url) {
     throw new Error('Missing argument url');
   }
@@ -50,7 +50,7 @@ var GitHubPageType = function(url, isFromType) {
       isFromType = [isFromType];
     }
 
-    lookup = Type.filter(function(item) {
+    lookup = Type.filter(function (item) {
       return isFromType.indexOf(item.name) !== -1;
     });
   }

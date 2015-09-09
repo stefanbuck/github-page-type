@@ -2,7 +2,7 @@
 
 var ghType = require('./index.js');
 
-suite('dynamic', function() {
+suite('dynamic', function () {
   bench('user', function () {
     ghType('https://github.com/user');
   });
@@ -14,7 +14,7 @@ suite('dynamic', function() {
   });
 });
 
-suite('static', function() {
+suite('static', function () {
   bench('home', function () {
     ghType('https://github.com');
   });
