@@ -103,7 +103,8 @@ describe('githubPageType', function () {
     ], 'REPOSITORY_TREE');
 
     isEqualHelper([
-      'https://github.com/user/repo/commits/4a30c6606465e294d1ae1c9ca394ba03368928f7',
+      'https://github.com/user/repo/commit/4a30c6606465e294d1ae1c9ca394ba03368928f7',
+      'https://github.com/user/repo/commit/master',
       '!https://github.com/user/repo/commits',
       '!https://github.com/user/repo/commits/master'
     ], 'REPOSITORY_COMMIT');
@@ -111,7 +112,7 @@ describe('githubPageType', function () {
     isEqualHelper([
       'https://github.com/user/repo/commits',
       'https://github.com/user/repo/commits/master',
-      '!https://github.com/user/repo/commits/4a30c6606465e294d1ae1c9ca394ba03368928f7'
+      '!https://github.com/user/repo/commit/4a30c6606465e294d1ae1c9ca394ba03368928f7'
     ], 'REPOSITORY_COMMITS');
 
     isEqualHelper([

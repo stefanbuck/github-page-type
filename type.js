@@ -87,9 +87,9 @@ Type.push({
 Type.push({
   name: 'REPOSITORY_COMMIT',
   test: function (obj) {
-    return obj.pathlist.length === 4 && obj.pathlist[2] === 'commits' && /\b[0-9a-f]{7,40}\b/.test(obj.pathlist[3]);
+    return obj.pathlist.length === 4 && obj.pathlist[2] === 'commit';
   },
-  sample: 'https://github.com/user/repo/commits/4a30c6606465e294d1ae1c9ca394ba03368928f7'
+  sample: 'https://github.com/user/repo/commit/4a30c6606465e294d1ae1c9ca394ba03368928f7'
 });
 
 Type.push({
