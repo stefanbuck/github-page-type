@@ -36,68 +36,45 @@ githubPageType('https://github.com/blog', [githubPageType.USER_ORGANIZATION_PROF
 
 ## Available types
 
-###USER_ORGANIZATION_PROFILE
-This matches to https://github.com/foo
-
-###REPOSITORY
-This matches to https://github.com/foo/bar
-
-###HOME
-This matches to https://github.com/
-
-###BLOG
-This matches to https://github.com/blog
-
-###EXPLORE
-This matches to https://github.com/explore
-
-###NOTIFICATIONS
-This matches to https://github.com/notifications
-
-###SHOWCASES
-This matches to https://github.com/showcases
-
-###STARS
-This matches to https://github.com/stars
-
-###TRENDING
-This matches to https://github.com/trending
-
-###WATCHING
-This matches to https://github.com/watching
-
-###SEARCH
-This matches to https://github.com/search
-
-###SETTINGS_ADMIN
-This matches to https://github.com/settings/admin
-
-###SETTINGS_APPLICATIONS
-This matches to https://github.com/settings/applications
-
-###SETTINGS_BILLING
-This matches to https://github.com/settings/billing
-
-###SETTINGS_EMAILS
-This matches to https://github.com/settings/email
-
-###SETTINGS_NOTIFICATIONS
-This matches to https://github.com/settings/notifications
-
-###SETTINGS_ORGANIZATIONS
-This matches to https://github.com/settings/organizations
-
-###SETTINGS_PROFILE
-This matches to https://github.com/settings/profile
-
-###SETTINGS_REPOSITORIES
-This matches to https://github.com/settings/repositories
-
-###SETTINGS_SECURITY
-This matches to https://github.com/settings/security
-
-###SETTINGS_SSH
-This matches to https://github.com/settings/ssh
+Type|Sample
+---|---
+HOME|https://github.com
+EXPLORE|https://github.com/explore
+NOTIFICATIONS|https://github.com/notifications
+SHOWCASES|https://github.com/showcases
+STARS|https://github.com/stars
+TRENDING|https://github.com/trending
+WATCHING|https://github.com/watching
+SEARCH|https://github.com/search
+ABOUT|https://github.com/about
+CONTACT|https://github.com/contact
+FEATURES|https://github.com/features
+SETTINGS_ADMIN|https://github.com/settings/admin
+SETTINGS_APPLICATIONS|https://github.com/settings/applications
+SETTINGS_BILLING|https://github.com/settings/billing
+SETTINGS_EMAILS|https://github.com/settings/emails
+SETTINGS_NOTIFICATIONS|https://github.com/settings/notifications
+SETTINGS_ORGANIZATIONS|https://github.com/settings/organizations
+SETTINGS_PROFILE|https://github.com/settings/profile
+SETTINGS_REPOSITORIES|https://github.com/settings/repositories
+SETTINGS_SECURITY|https://github.com/settings/security
+SETTINGS_SSH|https://github.com/settings/ssh
+BLOG|https://github.com/blog
+USER_ORGANIZATION_PROFILE|https://github.com/user
+REPOSITORY|https://github.com/user/repo
+REPOSITORY_BLOB|https://github.com/user/repo/blob/master/file
+REPOSITORY_TREE|https://github.com/user/repo/tree/master/folder
+REPOSITORY_COMMIT|https://github.com/user/repo/commit/4a30c6606465e294d1ae1c9ca394ba03368928f7
+REPOSITORY_COMMITS|https://github.com/user/repo/commits/master
+REPOSITORY_SEARCH|https://github.com/user/repo/search
+REPOSITORY_ISSUES|https://github.com/user/repo/issues
+REPOSITORY_ISSUE|https://github.com/user/repo/issues/123
+REPOSITORY_PULLS|https://github.com/user/repo/pulls
+REPOSITORY_PULL_CONVERSATION|https://github.com/user/repo/pull/123
+REPOSITORY_PULL_COMMITS|https://github.com/user/repo/pull/123/commits
+REPOSITORY_PULL_FILES|https://github.com/user/repo/pull/123/files
+REPOSITORY_COMPARE|https://github.com/user/repo/compare/master...dev
+REPOSITORY_COMPARE_OVERVIEW|https://github.com/user/repo/compare
 
 
 
