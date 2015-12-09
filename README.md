@@ -16,13 +16,13 @@ $ npm install --save github-page-type
 ## Usage
 
 ```js
-githubPageType('https://github.com/github-linker');
+githubPageType('https://github.com/octo-linker');
 // => USER_ORGANIZATION_PROFILE
 
 githubPageType('https://github.com/blog');
 // => BLOG
 
-githubPageType('https://github.com/github-linker/core');
+githubPageType('https://github.com/octo-linker/core');
 // => REPOSITORY
 
 githubPageType('https://github.com/blog', githubPageType.BLOG);
@@ -86,5 +86,5 @@ Copyright (c) 2015 Stefan Buck. Licensed under the MIT license.
 
 [npm-url]: https://npmjs.org/package/github-page-type
 [npm-image]: https://badge.fury.io/js/github-page-type.svg
-[travis-url]: https://travis-ci.org/github-linker/github-page-type
-[travis-image]: https://travis-ci.org/github-linker/github-page-type.svg?branch=master
+[travis-url]: https://travis-ci.org/octo-linker/github-page-type
+[travis-image]: https://travis-ci.org/octo-linker/github-page-type.svg?branch=master
