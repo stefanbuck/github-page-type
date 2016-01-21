@@ -161,6 +161,10 @@ describe('githubPageType', function () {
     ], 'REPOSITORY_COMPARE_OVERVIEW');
 
     isEqualHelper([
+      'https://github.com/user/repo/tags'
+    ], 'REPOSITORY_TAG');
+    
+    isEqualHelper([
       'http://github.com',
       'https://github.com',
       'https://github.com/',

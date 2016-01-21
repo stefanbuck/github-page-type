@@ -172,6 +172,14 @@ Type.push({
   sample: 'https://github.com/user/repo/compare'
 });
 
+Type.push({
+  name: 'REPOSITORY_TAG',
+  test: function (obj) {
+    return obj.pathlist.length === 3 && obj.pathlist[2] === 'tags';
+  },
+  sample: 'https://github.com/user/repo/tags'
+});
+
 // TODO add support for:
 
 // https://github.com/user/repo/branches
@@ -205,7 +213,6 @@ Type.push({
 // https://github.com/user/repo/settings/keys
 // https://github.com/user/repo/stargazers
 // https://github.com/user/repo/stargazers/you_know
-// https://github.com/user/repo/tags
 // https://github.com/user/repo/watchers
 // https://github.com/user/repo/wiki
 //

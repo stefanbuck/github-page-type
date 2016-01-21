@@ -75,6 +75,7 @@ REPOSITORY_PULL_COMMITS|https://github.com/user/repo/pull/123/commits
 REPOSITORY_PULL_FILES|https://github.com/user/repo/pull/123/files
 REPOSITORY_COMPARE|https://github.com/user/repo/compare/master...dev
 REPOSITORY_COMPARE_OVERVIEW|https://github.com/user/repo/compare
+REPOSITORY_TAG|https://github.com/user/repo/tags
 
 
 
